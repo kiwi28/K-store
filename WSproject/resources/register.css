@@ -1,0 +1,84 @@
+* {
+  margin: 0px;
+}
+
+body {
+  background: linear-gradient(90deg, #da4453 0%, #89216b 100%);
+  font-family: sans-serif;
+}
+
+label {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+}
+
+.box h1 {
+  margin: 0 auto;
+  color: #666;
+}
+
+.box a {
+  margin: 0 auto;
+  margin-top: 40px;
+  color: green;
+  text-decoration: none;
+}
+
+.box {
+  width: 700px;
+  height: 400px;
+  background-color: #fff;
+  margin: 20vh auto auto;
+  border-radius: 10px;
+  padding: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box .registerForm {
+  width: 500px;
+  height: ;
+  margin: auto;
+}
+
+.box .registerForm .textArea {
+  padding-left: 20px;
+  padding-right: 10px;
+  display: block;
+}
+
+.box .registerForm .inputField {
+  width: 170px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: #e7e7e7;
+  border: 0;
+  margin: 5px 10px;
+}
+
+.box .registerForm .textArea:focus {
+  background-color: rgb(241, 241, 241);
+  outline: 0px;
+}
+
+#registerBtn {
+  background-color: #57b648;
+  color: white;
+  width: 200px;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 20px;
+  margin-left: 20px;
+  transition: all 400ms;
+}
+
+#registerBtn:hover {
+  background-color: #8d236b;
+  letter-spacing: 1px;
+  outline: 0px;
+}
+
+#registerBtn:focus {
+  outline: 0;
+}

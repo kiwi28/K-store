@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "WSproject"
+		},
+		{
+			"path": "simple-server"
+		}
+	],
+  "settings": {
+    "liveServer.settings.port": 5501,
+    "liveServer.settings.multiRootWorkspaceName": "WSproject"
+  }
+}

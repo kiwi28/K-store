@@ -1,0 +1,121 @@
+* {
+  margin: 0px;
+}
+
+body {
+  background: linear-gradient(90deg, #da4453 0%, #89216b 100%);
+  font-family: sans-serif;
+}
+
+.box {
+  width: 700px;
+  height: 400px;
+  background-color: #fff;
+  margin: 20vh auto auto;
+  border-radius: 10px;
+  padding: 40px;
+  display: flex;
+}
+
+.box .hero {
+  position: relative;
+  z-index: 1;
+  width: 62%;
+  margin-right: 20px;
+  padding-right: 20px;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+  font-weight: 500;
+}
+
+.box .hero p:last-child {
+  font-size: 35px;
+}
+
+.box .hero::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 1px;
+  height: 80%;
+  background-color: hsl(0, 96%, 33%);
+}
+
+.box .loginForm {
+  width: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box .loginForm a {
+  margin-top: auto;
+  color: green;
+  text-decoration: none;
+}
+
+.box .loginForm a:hover {
+  text-decoration: underline #57b648;
+}
+
+.box .loginForm .field {
+  margin: 5px;
+  width: 152px;
+  height: 40px;
+  border-radius: 25px;
+  background-color: #e7e7e7;
+  border: 0;
+}
+
+.box .loginForm .textArea:focus {
+  background-color: rgb(241, 241, 241);
+  outline: 0px;
+}
+
+.box .loginForm .textArea {
+  padding-left: 38px;
+  padding-right: 10px;
+}
+
+.box .loginForm h1 {
+  margin: 40px auto 30px;
+}
+
+#loginBtn {
+  background-color: #57b648;
+  color: white;
+  width: 200px;
+  font-weight: 700;
+  font-size: 17px;
+  margin-top: 20px;
+  transition: all 400ms;
+  outline: 0;
+}
+
+#loginBtn:hover {
+  background-color: #8d236b;
+  letter-spacing: 1px;
+}
+
+#loginPicture {
+  width: 310px;
+  margin-top: 40px;
+}
+
+#usr {
+  background-image: url(./img/User.svg);
+  background-repeat: no-repeat;
+  background-size: 17px 17px;
+  background-position: 12px 12px;
+}
+
+#psw {
+  background-image: url(./img/Lock.svg);
+  background-repeat: no-repeat;
+  background-size: 17px 17px;
+  background-position: 12px 12px;
+}

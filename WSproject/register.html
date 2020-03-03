@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./resources/register.css">
+</head>
+
+<body>
+  <div class="box">
+    <h1>CREATE A NEW ACCOUNT</h1>
+    <form class="registerForm" >
+      <label for="firstName">
+        First Name
+        <input class="inputField textArea" type="text" id="firstName" placeholder="First Name" required>
+      </label>
+
+      <label for="lastNAme">
+        Last Name
+        <input class="inputField textArea" type="text" id="lastName" placeholder="Last Name" required>
+      </label>
+
+      <label for="psw">
+        Create a password
+        <input class="inputField textArea" type="password" id="psw" placeholder="********" required>
+      </label>
+
+      <label for="confirmPsw">
+        Confirm your password
+        <input class="inputField textArea" type="password" id="confirmPsw" placeholder="********" required>
+      </label>
+
+      <label for="email">
+        Your email address
+        <input class="inputField textArea" type="email" id="email" placeholder="example@example.com" required>
+      </label>
+
+      <input class="inputField registerBtn" type="submit" id="registerBtn" value="REGISTER">
+    </form>
+
+    <a href="login.html">Already have an account? Log in!</a>
+  </div>
+
+  <script src="./scripts/registerPage.js"></script>
+</body>
+
+</html>
+
+
+<!-- <form action="" method="post"></form> -->

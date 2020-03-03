@@ -1,0 +1,172 @@
+* {
+  margin: 0px;
+}
+body {
+  background: linear-gradient(90deg, #da4453 0%, #89216b 100%);
+  font-family: sans-serif;
+}
+
+.box .header {
+  width: 900px;
+  height: 80px;
+  /* border: 1px solid red; */
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.box .header .userZone {
+  width: 150px;
+  height: 50px;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+}
+.box .header .userZone #greet {
+  text-align: center;
+}
+.box .header .userZone .signAndCart {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  height: 70px;
+}
+.box .header .userZone .signAndCart .signOut {
+  background-image: url('./img/logout.png');
+  background-size: 30px 27px;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 27px;
+}
+.box .header .userZone .signAndCart .cart {
+  background-image: url('./img/supermarket.png');
+  background-size: 30px 27px;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 27px;
+}
+.box .header .userZone .signAndCart .cart .counter{
+  background-color: red;
+  color: white;
+  width: 15px;
+  height: 15px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 45%;
+}
+.box .header .dropdown .categoriesBtn {
+  background-color: #57b648;
+  color: white;
+  font-weight: 600;
+  font-size: 17px;
+  width: 200px;
+  height: 40px;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 25px;
+  transition: all 400ms;
+}
+.box .header .dropdown {
+  position: relative;
+  display: inline;
+}
+.box .header .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 25px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  /* opacity: 0; */
+  transition: all 200ms;
+}
+.box .header .dropdown .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.box .header .dropdown .dropdown-content a:hover {
+  background-color: #ddd;
+}
+.box .header .dropdown:hover .dropdown-content {
+  display: block;
+  /* opacity: 1; */
+}
+.box .header .dropdown:hover .categoriesBtn {
+  background-color: #8d236b;
+  letter-spacing: 1px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.box .header .searchBar {
+  width: 50%;
+  height: 40px;
+  outline: 0;
+  border: 0;
+  background-color: #e7e7e7;
+  border-radius: 25px;
+  background-image: url(./img/magnifying-glass.svg);
+  background-repeat: no-repeat;
+  background-size: 17px 17px;
+  background-position: 12px 12px;
+  padding-left: 38px;
+  padding-right: 10px;
+  font-size: 20px;
+  color: #666;
+}
+.box .header .searchBar:focus {
+  background-color: rgb(241, 241, 241);
+  outline: 0px;
+}
+.box .listings {
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  margin-top: 20px;
+  margin: auto;
+  justify-content: space-evenly;
+}
+.box .listings .card {
+  /* border: 1px solid blue; */
+  border-radius: 10px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  box-shadow: 0px 10px 18px 0px rgba(0,0,0,0.1);
+}
+.box .listings .card:hover {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+}
+.box .listings .card img{
+  height: 220px;
+}
+.box .listings .card h4 {
+  margin: 10px;
+}
+.box .listings .card h3 {
+  color: #57b648;
+}
+.box .listings .card h3:hover {
+  color: #8d236b;
+  text-decoration: underline #8d236b solid;
+}
+.box .listings .card h2 {
+  text-align: center;
+  margin-top: 10px;
+  height: 50px;
+}
