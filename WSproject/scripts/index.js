@@ -6,10 +6,12 @@ const greet = document.getElementById('greet');
 const listings = document.getElementById('listings');
 const dropDown = document.getElementById('dropDown');
 const signOutBtn = document.getElementById('signOutBtn');
+const cart = document.getElementById('cart');
 
 dropDown.addEventListener('click', getPhones);
 listings.addEventListener('click', product);
 signOutBtn.addEventListener('click', signOut);
+cart.addEventListener('click', hideShowCart);
 
 greet.innerText = `Bună ${sessionStorage.getItem('firstName')}!`;
 
@@ -115,9 +117,23 @@ function search(elem) {
       title = title.replace(/\s/g, '');
       searchStr = elem.value.replace(/\s/g, '').toLowerCase();
       if(title.includes(searchStr)) {
-        console.log(phone);
         renderCard(phone);
       } 
     })
   }
 }
+// -------------------------------show/hide cart pop-up
+let cartContainer = document.getElementById('cartContainer');
+cartContainer.setAttribute('style', 'display: none;');
+let cartState = false;
+
+function hideShowCart() {
+  if (!cartState) {
+    cartContainer.removeAttribute('style');
+    cartState = true;
+  } else {
+    cartContainer.setAttribute('style', 'display: none;');
+    cartState = false;
+  }
+}
+//--------------------------------------------------------

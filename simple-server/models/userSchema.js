@@ -16,7 +16,8 @@ const userSchema = mongoose.Schema({
   psw: {
     type: String,
     required: [true, "Password is required"]
-  }
+  },
+  cart: []
 });
 
 const User = mongoose.model('User', userSchema);
