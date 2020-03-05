@@ -44,53 +44,6 @@ exports.getProduct = (req, res, next) => {
     }));
 }
 
-// exports.cart = (req, res, next) => {
-//   console.log('LOG_LA_REQUEST-----------', req.body);
-//   User.findById(req.body.userId)
-//     .then(r => {
-//       if (req.body.delete) {
-//         Product.findById(req.body.productId)
-//             .then(product => {
-//               // console.log('log la cart',r);
-//               // r.update(
-//               //   // { _id: r.}
-//               //   { $pull: { cart: {_id: product.id}}},
-//               //   { multi: true }
-//               // )
-//               console.log('log la cart arr---------------');
-//               res.json(r.cart);
-//             })
-//             .catch(err => res.json({
-//               message: 'add product to cart err',
-//               err
-//             }));
-//             return ;
-//       } else {
-//         if (req.body.productId) {
-//           Product.findById(req.body.productId)
-//             .then(product => {
-//               r.cart.push(product);
-//               r.save();
-//               console.log('log la cart arr---------------', r.cart);
-//               res.json(r.cart);
-//             })
-//             .catch(err => res.json({
-//               message: 'add product to cart err',
-//               err
-//             }));
-//             console.log('log 2-----------------')
-//         } else {
-//           res.json(r.cart);
-//           console.log('log 3--------------------------------')
-//         }
-//       }
-//     })
-//     .catch(err => res.json({
-//       message: 'Find user err',
-//       err
-//     }))
-// }
-
 exports.cartAdd = (req, res, next) => {
   User.findById(req.body.userId)
     .then(r => {
@@ -99,7 +52,6 @@ exports.cartAdd = (req, res, next) => {
           .then(product => {
             r.cart.push(product);
             r.save();
-            console.log('log la cart arr---------------');
             res.json(r.cart);
           })
           .catch(err => res.json({
