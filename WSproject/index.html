@@ -29,7 +29,7 @@
         <div class="signAndCart">
           <div class="signOut" id="signOutBtn"></div>
           <div class="cart" id="cart">
-            <div class="counter" id="cartCounter">2</div>
+            <div class="counter" id="cartCounter"></div>
           </div>
         </div>
       </div>
@@ -38,28 +38,16 @@
     <div class="cartContainer" id="cartContainer">
 
       <div class="topBar">
-        <h3 class="infoText">Aveti x produse in coș </h3>
+        <h3 class="infoText" id="infoText">Aveti x produse in coș </h3>
         <img src="./resources/img/close.png" id="closeCart">
       </div>
 
       <div class="listContainer">
-        <ul>
-          <li>
-            <div class="deleteListItem">
-              <img src="./resources/img/trash.png">
-            </div>
-            <img src="./resources/img/phones/apple/iph11promax.jpg">
-            <div class="cartItemDetails">
-              <h2 id="cartItemTitle">Apple iPhone 11Pro Max</h4>
-              <h4 id="cartItemPrice">5200 RON</h4>
-            </div>
-          </li>
-          <li></li>
-          <li></li>
+        <ul id="listUl"></ul>
       </div>
 
       <div class="botBar">
-        <h3 class="totalText">Total = 20000 RON</h3>
+        <h3 class="totalText" id="totalPriceText"></h3>
       </div>
       
     </div>

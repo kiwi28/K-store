@@ -18,17 +18,19 @@ closeCart.addEventListener('click', hideShowCart);
 greet.innerText = `Bună ${sessionStorage.getItem('firstName')}!`;
 
 var phonesArr;
+renderCart();
+
 //---render all products on page laod
 fetch("http://localhost:3028/api/user/index", {
-    method: 'POST',
-    headers: {
+  method: 'POST',
+  headers: {
     "Content-Type": "application/json",
     "Authorization": "Bearer " + sessionStorage.getItem('token')
   },
-    body: JSON.stringify({
-      filter: ''
-    })
+  body: JSON.stringify({
+    filter: ''
   })
+})
   .then(res => res.json())
   .then(r => {
     //randare pagina telefoane la categorii
@@ -40,7 +42,7 @@ fetch("http://localhost:3028/api/user/index", {
 //----render cards by category
 async function getPhones(e) {
   var filter;
-  if(e.target.innerText == 'Toate produsele') {
+  if (e.target.innerText == 'Toate produsele') {
     filter = '';
   } else {
     var filter = e.target.innerText;
@@ -48,13 +50,13 @@ async function getPhones(e) {
 
   clearListings();
 
-//request brand de telefon, res array cu toatele modelele
+  //request brand de telefon, res array cu toatele modelele
   fetch("http://localhost:3028/api/user/index", {
     method: 'POST',
     headers: {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + sessionStorage.getItem('token')
-  },
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + sessionStorage.getItem('token')
+    },
     body: JSON.stringify({
       filter
     })
@@ -65,6 +67,42 @@ async function getPhones(e) {
       r.map(phone => renderCard(phone));
     })
     .catch(err => console.log(err));
+}
+//--------update cart with items from db
+function renderCart() {
+  fetch("http://localhost:3028/api/user/cart", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + sessionStorage.getItem('token')
+    },
+    body: JSON.stringify({
+      userId: sessionStorage.getItem('userId'),
+      productId: ''
+    })
+  })
+    .then(response => response.json())
+    .then(r => {
+      const cartCounter = document.getElementById('cartCounter');
+      const infoText = document.getElementById('infoText');
+      infoText.innerText = `Aveti ${r.length} produse in coș`;
+      if (r.length > 0) {
+        cartCounter.innerText = r.length;
+        cartCounter.removeAttribute('style');
+      } else {
+        cartCounter.setAttribute('style', 'display: none;');
+      }
+
+      r.map(item => renderCartItem(item));
+      let totalPrice = 0;
+      for (let i = 0; i < r.length; i++) {
+        totalPrice += parseFloat(r[i].price);
+      }
+
+      const priceText = document.getElementById('totalPriceText');
+      priceText.innerText = `Total = ${totalPrice} RON`;
+    })
+    .catch(err => console.log(err))
 }
 
 //---------functie de creare a unui card cu 1 produs
@@ -90,29 +128,8 @@ function renderCard(phone) {
   addToCartBtn.innerText = 'Adauga in coș';
   addToCartBtn.setAttribute('id', phone._id);
 
-  //-----------add to cart logicmoved in productPage.js
-  // var phoneId = phone._id;
-  // // console.log(phoneItem);
-  // //listener with call back to add clicked items in cart
-  // addToCartBtn.addEventListener('click', phoneId => {
-  //   console.log(phoneId.target.id);
-  //   fetch("http://localhost:3028/api/user/cart", {
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + sessionStorage.getItem('token')
-  //     },
-  //     body: JSON.stringify({
-  //       userId: sessionStorage.getItem('userId'),
-  //       productId: phoneId
-  //     })
-  //   })
-  //     .then(response => response.json())
-  //     .then(r => console.log(r))
-  // })
-
   card.appendChild(img);
-  card.appendChild(title);z
+  card.appendChild(title);
   card.appendChild(price);
   card.appendChild(addToCartBtn);
   listings.appendChild(card);
@@ -132,20 +149,20 @@ function signOut() {
   location.reload();
 }
 function clearListings() {
-  while(listings.childNodes.length > 0) {
+  while (listings.childNodes.length > 0) {
     listings.removeChild(listings.lastChild);
   }
 }
 function search(elem) {
-  if(event.key === 'Enter') {
+  if (event.key === 'Enter') {
     clearListings();
     phonesArr.map(phone => {
       let title = phone.brand.toLowerCase() + phone.model.toLowerCase();
       title = title.replace(/\s/g, '');
       searchStr = elem.value.replace(/\s/g, '').toLowerCase();
-      if(title.includes(searchStr)) {
+      if (title.includes(searchStr)) {
         renderCard(phone);
-      } 
+      }
     })
   }
 }
@@ -164,3 +181,61 @@ function hideShowCart() {
   }
 }
 //--------------------------------------------------------
+
+//----dom for cart item in pop-up
+function renderCartItem(item) {
+  const listUl = document.getElementById('listUl');
+  const liItem = document.createElement('li');
+
+  const deleteBtn = document.createElement('div');
+  deleteBtn.className = 'deleteListItem';
+  deleteBtn.setAttribute('id', item._id);
+  //------------stergere elemente din cart
+  deleteBtn.addEventListener('click', e => {
+    console.log(e.target.id);
+    fetch("http://localhost:3028/api/user/cart", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        userId: sessionStorage.getItem('userId'),
+        productId: e.target.id,
+        delete: true
+      })
+    })
+    
+    while (listUl.childNodes.length > 0) {
+      listUl.removeChild(listUl.lastChild);
+    }
+    renderCart();
+  })
+
+  const trashCan = document.createElement('img');
+  trashCan.src = "./resources/img/trash.png";
+  trashCan.setAttribute('id', item._id);
+  deleteBtn.appendChild(trashCan);
+
+  const productImg = document.createElement('img');
+  productImg.src = item.image;
+
+  const cartItemDetails = document.createElement('div');
+  cartItemDetails.className = 'cartItemDetails';
+
+  const cartItemTitle = document.createElement('h2');
+  cartItemTitle.setAttribute('id', "cartItemTitle");
+  cartItemTitle.innerText = item.brand + ' ' + item.model;
+  cartItemDetails.appendChild(cartItemTitle);
+
+  const cartItemPrice = document.createElement('h4');
+  cartItemPrice.setAttribute('id', "cartItemPrice");
+  cartItemPrice.innerText = item.price + ' RON';
+  cartItemDetails.appendChild(cartItemPrice);
+
+  liItem.appendChild(deleteBtn);
+  liItem.appendChild(productImg);
+  liItem.appendChild(cartItemDetails);
+
+  listUl.appendChild(liItem);
+}

@@ -188,6 +188,7 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: space-evenly;
+  width: 280px;
 }
 .box .cartContainer .listContainer ul li div h4 {
   align-self: flex-end;

@@ -45,23 +45,40 @@ exports.getProduct = (req, res, next) => {
 }
 
 exports.cart = (req, res, next) => {
-  console.log('LOG_LA_REQUEST-----------',req.body);
+  console.log('LOG_LA_REQUEST-----------', req.body);
   User.findById(req.body.userId)
     .then(r => {
-      if (req.body.productId){ 
+      if (req.body.delete == true) {
         Product.findById(req.body.productId)
-        .then(product => {
-          r.cart.push(product);
-          r.save();
-          console.log('log la cart arr---------------', r.cart);
-          res.json(r.cart);
-        })
-        .catch(err => res.json({
-          message: 'add product to cart err',
-          err
-        }));
+            .then(product => {
+              r.update(
+                { $pullAll: { cart: {_id: product.id}}},
+                { multi: true }
+              )
+              console.log('log la cart arr---------------', r.cart);
+              res.json(r.cart);
+            })
+            .catch(err => res.json({
+              message: 'add product to cart err',
+              err
+            }));
+            return ;
       } else {
-        res.json(r.cart);
+        if (req.body.productId) {
+          Product.findById(req.body.productId)
+            .then(product => {
+              r.cart.push(product);
+              r.save();
+              console.log('log la cart arr---------------', r.cart);
+              res.json(r.cart);
+            })
+            .catch(err => res.json({
+              message: 'add product to cart err',
+              err
+            }));
+        } else {
+          res.json(r.cart);
+        }
       }
     })
     .catch(err => res.json({

@@ -42,6 +42,12 @@ fetch("http://localhost:3028/api/user/product", {
 
     //actualizeaza datele din tabel si imaginea specifice modelului de telefon selectat;
 function renderCard (phone) {
+  var imgContainer = document.getElementById('imgContainer');
+  const addBtn = document.createElement('button');
+  addBtn.innerText = 'Adaugă în coș';
+  addBtn.setAttribute('id', phone._id);
+  imgContainer.appendChild(addBtn);
+
   const imageImg = document.getElementById('imageImg');
   imageImg.src = phone.image;
 
@@ -61,7 +67,23 @@ function renderCard (phone) {
   tdCpu.innerText = phone.cpu;
   tdCamera.innerText = phone.camera;
   tdSize.innerText = phone.size;
-
+//send user id and item id to server so it can add that item in user's cart
+  addBtn.addEventListener('click', event => {
+    fetch("http://localhost:3028/api/user/cart", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + sessionStorage.getItem('token')
+      },
+      body: JSON.stringify({
+        userId: sessionStorage.getItem('userId'),
+        productId: event.target.id
+      })
+    })
+      .then(response => response.json())
+      .then(r => console.log(r))
+      .catch(err => console.log(err))
+  })
 }
 
 //logout user
