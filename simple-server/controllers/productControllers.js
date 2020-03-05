@@ -1,7 +1,8 @@
 const Product = require('../models/productSchema');
+const User = require('../models/userSchema');
 
 exports.getProducts = (req, res, next) => {
-  Product.find( req.body.filter ? {brand: req.body.filter} : {})
+  Product.find(req.body.filter ? { brand: req.body.filter } : {})
     .then(r => res.json(r))
     .catch(err => res.json(err))
 }
@@ -43,4 +44,28 @@ exports.getProduct = (req, res, next) => {
     }));
 }
 
-
+exports.cart = (req, res, next) => {
+  console.log('LOG_LA_REQUEST-----------',req.body);
+  User.findById(req.body.userId)
+    .then(r => {
+      if (req.body.productId){ 
+        Product.findById(req.body.productId)
+        .then(product => {
+          r.cart.push(product);
+          r.save();
+          console.log('log la cart arr---------------', r.cart);
+          res.json(r.cart);
+        })
+        .catch(err => res.json({
+          message: 'add product to cart err',
+          err
+        }));
+      } else {
+        res.json(r.cart);
+      }
+    })
+    .catch(err => res.json({
+      message: 'Find user err',
+      err
+    }))
+}

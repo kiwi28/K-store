@@ -11,5 +11,5 @@ router.post('/login', userController.loginUser);
 router.post('/index', authorizedMiddleware, productControllers.getProducts);
 router.post('/admin', authorizedMiddleware, productControllers.addProduct);
 router.post('/product', authorizedMiddleware, productControllers.getProduct);
-
+router.post('/cart', productControllers.cart)
 module.exports = router;

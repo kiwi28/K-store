@@ -1,5 +1,5 @@
 //redirect user to login page if not logged with admin account
-if (sessionStorage.getItem('userEmail') != 'alexkiwi.2011@gmail.com') {
+if (sessionStorage.getItem('userId') != '5e590a557295d122601671ce') {
   window.location.replace('./login.html');
 }
 const submitBtn = document.getElementById("submitBtn");
@@ -8,6 +8,7 @@ const clearForm = document.getElementById('clearForm');
 submitBtn.addEventListener('click', addProduct);
 clearForm.addEventListener('click', clearFields)
 
+//---------form data to server, to create a new item in DB
 function addProduct(e) {
   e.preventDefault();
 

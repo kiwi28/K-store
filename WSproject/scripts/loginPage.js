@@ -20,8 +20,9 @@ function loginUser(e) {
     })
   }).then(res => res.json())
     .then(response => {
+      console.log(response)
       sessionStorage.setItem('token', response.token);
-      sessionStorage.setItem('userEmail', response.email);
+      sessionStorage.setItem('userId', response.userId);
       sessionStorage.setItem('firstName', response.firstName);
       window.location.replace(response.redirect);
     })

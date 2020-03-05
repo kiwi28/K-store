@@ -42,7 +42,7 @@ exports.loginUser = (req, res, next) => {
             res.json({
               token,
               firstName: response.firstName,
-              email: response.email,
+              userId: response._id,
               redirect: './index.html'
             });
         })
@@ -50,3 +50,4 @@ exports.loginUser = (req, res, next) => {
     })
     .catch(err => console.log('USER_DOES_NOT_EXISTS', err));
 }
+

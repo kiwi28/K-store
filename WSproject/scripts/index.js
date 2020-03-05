@@ -7,11 +7,13 @@ const listings = document.getElementById('listings');
 const dropDown = document.getElementById('dropDown');
 const signOutBtn = document.getElementById('signOutBtn');
 const cart = document.getElementById('cart');
+const closeCart = document.getElementById('closeCart');
 
 dropDown.addEventListener('click', getPhones);
 listings.addEventListener('click', product);
 signOutBtn.addEventListener('click', signOut);
 cart.addEventListener('click', hideShowCart);
+closeCart.addEventListener('click', hideShowCart);
 
 greet.innerText = `Bună ${sessionStorage.getItem('firstName')}!`;
 
@@ -84,19 +86,44 @@ function renderCard(phone) {
   let price = document.createElement('h4');
   price.innerText = phone.price + ' RON';
 
-  let addToCart = document.createElement('h3');
-  addToCart.innerText = 'Adauga in coș';
+  let addToCartBtn = document.createElement('h3');
+  addToCartBtn.innerText = 'Adauga in coș';
+  addToCartBtn.setAttribute('id', phone._id);
+
+  //-----------add to cart logicmoved in productPage.js
+  // var phoneId = phone._id;
+  // // console.log(phoneItem);
+  // //listener with call back to add clicked items in cart
+  // addToCartBtn.addEventListener('click', phoneId => {
+  //   console.log(phoneId.target.id);
+  //   fetch("http://localhost:3028/api/user/cart", {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + sessionStorage.getItem('token')
+  //     },
+  //     body: JSON.stringify({
+  //       userId: sessionStorage.getItem('userId'),
+  //       productId: phoneId
+  //     })
+  //   })
+  //     .then(response => response.json())
+  //     .then(r => console.log(r))
+  // })
 
   card.appendChild(img);
-  card.appendChild(title);
+  card.appendChild(title);z
   card.appendChild(price);
-  card.appendChild(addToCart);
+  card.appendChild(addToCartBtn);
   listings.appendChild(card);
 }
 
 //----redirect client to e new page using querry params
 function product(e) {
-  window.location.assign(`./productPage.html?id=${e.target.id}`)
+  if (e.target.id) {
+    window.location.assign(`./productPage.html?id=${e.target.id}`);
+  }
+  return
 }
 
 //------sign out user
@@ -122,7 +149,7 @@ function search(elem) {
     })
   }
 }
-// -------------------------------show/hide cart pop-up
+// -------------------------------show/hide cart pop-up-------
 let cartContainer = document.getElementById('cartContainer');
 cartContainer.setAttribute('style', 'display: none;');
 let cartState = false;

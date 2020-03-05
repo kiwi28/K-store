@@ -129,7 +129,6 @@ body {
   outline: 0px;
 }
 .box .cartContainer {
-  border: 2px solid #57b648;
   position: fixed;
   width: 400px;
   right: 50px;
@@ -137,6 +136,8 @@ body {
   background-color: white;
   min-height: fit-content;
   max-height: 600px;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+
 }
 .box .cartContainer .topBar {
   height: 44px;
@@ -236,6 +237,7 @@ body {
 }
 .box .listings .card h3 {
   color: #57b648;
+  cursor: pointer;
 }
 .box .listings .card h3:hover {
   color: #8d236b;
