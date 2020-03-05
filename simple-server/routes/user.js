@@ -11,5 +11,7 @@ router.post('/login', userController.loginUser);
 router.post('/index', authorizedMiddleware, productControllers.getProducts);
 router.post('/admin', authorizedMiddleware, productControllers.addProduct);
 router.post('/product', authorizedMiddleware, productControllers.getProduct);
-router.post('/cart', productControllers.cart)
+router.post('/cartAdd', authorizedMiddleware, productControllers.cartAdd);
+router.post('/cartDelete', authorizedMiddleware, productControllers.cartDelete);
+
 module.exports = router;

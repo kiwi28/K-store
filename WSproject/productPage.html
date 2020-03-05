@@ -20,11 +20,32 @@
         <div class="signOut" id="signOutBtn"></div>
         <h4>Log out</h3>
       </div>
-      <div class="cartBox">
-        <div class="cart"></div>
+      <div class="cartBox" id="cart">
+        <div class="cart" >
+          <div class="counter" id="cartCounter"></div>
+        </div>
         <h4>Coșul meu</h4>
       </div>
     </div>
+
+    <!-- -------------------Cart Pop-up------------------------------------ -->
+    <div class="cartContainer" id="cartContainer">
+
+      <div class="topBar">
+        <h3 class="infoText" id="infoText">Aveti x produse in coș </h3>
+        <img src="./resources/img/close.png" id="closeCart">
+      </div>
+
+      <div class="listContainer">
+        <ul id="listUl"></ul>
+      </div>
+
+      <div class="botBar">
+        <h3 class="totalText" id="totalPriceText"></h3>
+      </div>
+      
+    </div>
+<!-- ------------------------------------------------------------------- -->
 
     <div class="listing">
       <div class="imgContainer" id="imgContainer">

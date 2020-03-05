@@ -70,7 +70,7 @@ async function getPhones(e) {
 }
 //--------update cart with items from db
 function renderCart() {
-  fetch("http://localhost:3028/api/user/cart", {
+  fetch("http://localhost:3028/api/user/cartAdd", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -102,7 +102,7 @@ function renderCart() {
       const priceText = document.getElementById('totalPriceText');
       priceText.innerText = `Total = ${totalPrice} RON`;
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 }
 
 //---------functie de creare a unui card cu 1 produs
@@ -192,8 +192,7 @@ function renderCartItem(item) {
   deleteBtn.setAttribute('id', item._id);
   //------------stergere elemente din cart
   deleteBtn.addEventListener('click', e => {
-    console.log(e.target.id);
-    fetch("http://localhost:3028/api/user/cart", {
+    fetch("http://localhost:3028/api/user/cartDelete", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +201,6 @@ function renderCartItem(item) {
       body: JSON.stringify({
         userId: sessionStorage.getItem('userId'),
         productId: e.target.id,
-        delete: true
       })
     })
     

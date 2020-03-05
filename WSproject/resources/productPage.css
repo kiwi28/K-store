@@ -61,6 +61,16 @@ body {
   width: 30px;
   height: 27px;
 }
+.box .header .cartBox .cart .counter {
+  background-color: red;
+  color: white;
+  width: 15px;
+  height: 15px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 45%;
+}
 .box .header .signOutBox .signOut {
   background-image: url('./img/logout.png');
   background-size: 30px 27px;
@@ -114,4 +124,81 @@ body {
 }
 .box .specs td {
   padding: 5px;
+}
+.box .cartContainer {
+  position: fixed;
+  width: 400px;
+  right: 50px;
+  border-radius: 10px;
+  background-color: white;
+  min-height: fit-content;
+  max-height: 600px;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+
+}
+.box .cartContainer .topBar {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
+}
+.box .cartContainer .topBar .infoText {
+  width: fit-content;
+  margin-left: 20px;
+}
+.box .cartContainer .topBar img {
+  width: 20px;
+  /* align-self: start; */
+  margin: 5px;
+}
+.box .cartContainer .listContainer ul {
+  overflow: hidden;
+  overflow-y: scroll;
+  max-height: 512px;
+  padding: 0;
+}
+.box .cartContainer .listContainer ul .deleteListItem {
+  height: 100px;
+  width: 30px;
+  background-color: #57b648;
+}
+.box .cartContainer .listContainer ul .deleteListItem:hover {
+  background-color: red;
+}
+.box .cartContainer .listContainer ul .deleteListItem img{
+  width: 30px;
+  height: 30px;
+}
+.box .cartContainer .listContainer ul li {
+  border-bottom: 1px solid #666;
+  list-style-type: none;
+  height: 100px;
+  display: flex;
+}
+.box .cartContainer .listContainer ul li img {
+  height: 90px;
+  margin: 5px;
+}
+.box .cartContainer .listContainer ul li div {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 280px;
+}
+.box .cartContainer .listContainer ul li div h4 {
+  align-self: flex-end;
+  font-size: large;
+  margin-right: 10px;
+}
+.box .cartContainer .botBar {
+  height: 44px;
+  box-shadow: 0px -4px 5px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.box .cartContainer .botBar .totalText {
+  margin-right: 10px;
 }
