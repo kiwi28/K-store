@@ -1,8 +1,3 @@
-// const mongoose = require('mongoose')
-// const uri = "mongodb+srv://Kiwi28:kiwiPsw@clusterno1-u93k2.mongodb.net/test?retryWrites=true&w=majority"
-// const client = new MongoClient(uri, { useNewUriParser: true });
-// const User = mongoose.model('user', userSchema);
-
 //------------------form completion requirments------
 var password = document.getElementById("psw")
 var confirm_password = document.getElementById("confirmPsw");
