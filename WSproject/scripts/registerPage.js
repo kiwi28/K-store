@@ -30,7 +30,7 @@ function registerUser(e) {
   const psw = document.getElementById('psw').value;
   const email = document.getElementById('email').value;
 
-  fetch("http://localhost:3028/api/user/register", {
+  fetch("http://192.168.0.104:3028/api/user/register", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json"

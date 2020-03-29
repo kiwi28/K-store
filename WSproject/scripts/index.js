@@ -21,7 +21,7 @@ var phonesArr;
 renderCart();
 
 //---render all products on page laod
-fetch("http://localhost:3028/api/user/index", {
+fetch("http://192.168.0.104:3028/api/user/index", {
   method: 'POST',
   headers: {
     "Content-Type": "application/json",
@@ -51,7 +51,7 @@ async function getPhones(e) {
   clearListings();
 
   //request brand de telefon, res array cu toatele modelele
-  fetch("http://localhost:3028/api/user/index", {
+  fetch("http://192.168.0.104:3028/api/user/index", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -70,7 +70,7 @@ async function getPhones(e) {
 }
 //--------update cart with items from db
 function renderCart() {
-  fetch("http://localhost:3028/api/user/cartAdd", {
+  fetch("http://192.168.0.104:3028/api/user/cartAdd", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -192,7 +192,7 @@ function renderCartItem(item) {
   deleteBtn.setAttribute('id', item._id);
   //------------stergere elemente din cart
   deleteBtn.addEventListener('click', e => {
-    fetch("http://localhost:3028/api/user/cartDelete", {
+    fetch("http://192.168.0.104:3028/api/user/cartDelete", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

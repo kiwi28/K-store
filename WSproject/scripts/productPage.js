@@ -28,7 +28,7 @@ function getUrlVars() {
 var productId = getUrlVars()['id'];
 
 // console.log(id)//
-fetch("http://localhost:3028/api/user/product", {
+fetch("http://192.168.0.104:3028/api/user/product", {
     method: 'POST',
     headers: {
     "Content-Type": "application/json",
@@ -75,7 +75,7 @@ function renderCard (phone) {
 //send user id and item id to server so it can add that item in user's cart
   addBtn.addEventListener('click', event => {
     location.reload();//repair this shit
-    fetch("http://localhost:3028/api/user/cartAdd", {
+    fetch("http://192.168.0.104:3028/api/user/cartAdd", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function hideShowCart() {
 //--------------------------------------------------------
 
 function renderCart() {
-  fetch("http://localhost:3028/api/user/cartAdd", {
+  fetch("http://192.168.0.104:3028/api/user/cartAdd", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -162,7 +162,7 @@ function renderCartItem(item) {
   deleteBtn.setAttribute('id', item._id);
   //------------stergere elemente din cart
   deleteBtn.addEventListener('click', e => {
-    fetch("http://localhost:3028/api/user/cartDelete", {
+    fetch("http://192.168.0.104:3028/api/user/cartDelete", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

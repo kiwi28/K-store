@@ -21,7 +21,7 @@ function addProduct(e) {
   const image = document.getElementById('image').value;
   const price = document.getElementById('price').value;
 
-  fetch("http://localhost:3028/api/user/admin", {
+  fetch("http://192.168.0.104:3028/api/user/admin", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
