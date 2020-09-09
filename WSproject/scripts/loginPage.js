@@ -9,7 +9,7 @@ function loginUser(e) {
   const psw = document.getElementById('psw').value;
   // console.log(email);
 
-  fetch("http://192.168.0.104:3028/api/user/login", {
+  fetch("http://localhost:3028/api/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

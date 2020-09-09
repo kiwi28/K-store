@@ -20,33 +20,33 @@ renderCart();
 //---get product id from url
 function getUrlVars() {
   let vars = {};
-  window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = value;
+  window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    vars[key] = value;
   });
   return vars;
 }
 var productId = getUrlVars()['id'];
 
 // console.log(id)//
-fetch("http://192.168.0.104:3028/api/user/product", {
-    method: 'POST',
-    headers: {
+fetch("http://localhost:3028/api/user/product", {
+  method: 'POST',
+  headers: {
     "Content-Type": "application/json",
     "Authorization": "Bearer " + sessionStorage.getItem('token')
   },
-    body: JSON.stringify({
-      id: productId
-    })
+  body: JSON.stringify({
+    id: productId
   })
-    .then(res => res.json())
-    .then(r => {
-      phoneName.innerText = r.brand + ' ' + r.model;
-      renderCard(r);
-    })
-    .catch(err => console.log(err));
+})
+  .then(res => res.json())
+  .then(r => {
+    phoneName.innerText = r.brand + ' ' + r.model;
+    renderCard(r);
+  })
+  .catch(err => console.log(err));
 
-    //actualizeaza datele din tabel si imaginea specifice modelului de telefon selectat;
-function renderCard (phone) {
+//actualizeaza datele din tabel si imaginea specifice modelului de telefon selectat;
+function renderCard(phone) {
   var imgContainer = document.getElementById('imgContainer');
   const addBtn = document.createElement('button');
   addBtn.innerText = 'Adaugă în coș';
@@ -59,10 +59,10 @@ function renderCard (phone) {
   const price = document.getElementById('priceH3');
   price.innerText = `Preț: ${phone.price} RON`;
 
-  const tdBrand = document.getElementById('tdBrand');  
+  const tdBrand = document.getElementById('tdBrand');
   const tdModel = document.getElementById('tdModel');
   const tdRam = document.getElementById('tdRam');
-  const tdCpu = document.getElementById('tdCpu');  
+  const tdCpu = document.getElementById('tdCpu');
   const tdSize = document.getElementById('tdSize');
   const tdCamera = document.getElementById('tdCamera');
 
@@ -72,10 +72,10 @@ function renderCard (phone) {
   tdCpu.innerText = phone.cpu;
   tdCamera.innerText = phone.camera;
   tdSize.innerText = phone.size;
-//send user id and item id to server so it can add that item in user's cart
+  //send user id and item id to server so it can add that item in user's cart
   addBtn.addEventListener('click', event => {
     location.reload();//repair this shit
-    fetch("http://192.168.0.104:3028/api/user/cartAdd", {
+    fetch("http://localhost:3028/api/user/cartAdd", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function hideShowCart() {
 //--------------------------------------------------------
 
 function renderCart() {
-  fetch("http://192.168.0.104:3028/api/user/cartAdd", {
+  fetch("http://localhost:3028/api/user/cartAdd", {
     method: 'POST',
     headers: {
       "Content-Type": "application/json",
@@ -162,7 +162,7 @@ function renderCartItem(item) {
   deleteBtn.setAttribute('id', item._id);
   //------------stergere elemente din cart
   deleteBtn.addEventListener('click', e => {
-    fetch("http://192.168.0.104:3028/api/user/cartDelete", {
+    fetch("http://localhost:3028/api/user/cartDelete", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +173,7 @@ function renderCartItem(item) {
         productId: e.target.id,
       })
     })
-    
+
     while (listUl.childNodes.length > 0) {
       listUl.removeChild(listUl.lastChild);
     }
@@ -207,3 +207,25 @@ function renderCartItem(item) {
 
   listUl.appendChild(liItem);
 }
+
+// //////////test gsmarena scrapper
+// testScrapper()
+// function testScrapper() {
+//   fetch("http://localhost:8888/gsmarena/brands", {
+//     method: 'GET',
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   })
+//     .then(r => r.json())
+//     .then(resp => {
+//       fetch(`http://localhost:8888/gsmarena/brand/${resp[1].url}`, {
+//         method: 'GET',
+//         headers: {
+//           "Content-Type": "application/json"
+//         }
+//       })
+//         .then(r => r.json())
+//         .then(t => console.log(t))
+//     });
+// }
